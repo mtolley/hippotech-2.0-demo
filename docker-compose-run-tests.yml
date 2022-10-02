@@ -1,0 +1,14 @@
+version: "3"
+services:
+    cypress:
+        # the Docker image to use from https://github.com/cypress-io/cypress-docker-images
+        image: "cypress/included:10.9.0"
+        # depends_on:
+        #     - hippotech
+        environment:
+            # pass base url to test pointing at the web application
+            - CYPRESS_baseUrl=http://hippotech:3001
+            # share the current folder as volume to avoid copying
+        working_dir: /test
+        volumes:
+            - ./test:/test
