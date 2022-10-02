@@ -2,7 +2,7 @@
 
 HippoTech is a fake, online mortgage service full of the worst kinds of security vulnerabilities you can imagine...and then some! It is designed for application security training and you should run it carefully, in private, and **never expose it on the network or internet** because it is dangerously vulnerable.
 
-Questions? Comments? Hit the author up at <mtolley@synopsys.com>. 
+Questions? Comments? Hit the author up (gently) at <mtolley@synopsys.com>. 
 
 ## The Tech Stack
 
@@ -12,21 +12,28 @@ HippoTech 2.0 is a Single Page Application (SPA) written in React/JavaScript. Th
 
 There are end-to-end automated tests written using the excellent **[Cypress](https://cypress.io)** testing framework. This author does not enjoy testing asynchronous client-side code, but thankfully Cypress makes it much easier.
 
-## Up And Running As Quickly As Possible
+## Up And Running: The Monolithic Version
 
-It's a Java application, so you'll need a JVM: at least Java 11. Just grab the latest release and run 
+It's a Java application so you'll need a JVM (Java 11 or later). Just grab the latest release from https://github.com/mtolley/hippotech-2.0-demo/releases/latest/download/api.jar and run: 
 
-`java -jar java-api/api.jar`
+`java -jar api.jar`
 
 This will serve the entire application (the API back-end and the React frontend) locally on port 3001. The port number is pretty much hard-wired today so if that doesn't work out for you, unfortunately, you will need to *make* it work. Sorry about that. 
 
 Make sure it's up and running on <http://localhost:3001>.
 
-## Up And Running: Microservices Version
+## Up And Running: The Microservices Version
 
-Running the JAR by itself spins up the monolithic, standalone version of HippoTech. If you have Docker Compose, you can easily run a distributed, microservices version of the same application. The functionality is identical, but there are more communicating microservices behind the scenes communicating over HTTP and Kafka queues. You can start this version of the application by simply running:
+You can easily run a distributed, microservices version of the same application with Docker Compose. The functionality is identical, but there are more communicating microservices behind the scenes communicating over HTTP and Kafka queues. You will need to:
 
-`docker-compose up`
+1. Clone this repository.
+2. Launch the microservices version of the application with Docker Compose
+
+```
+git clone https://github.com/mtolley/hippotech-2.0-demo.git
+cd hippotech-2.0-demo
+docker-compose up
+```
 
 Just like the monolithic version, the front end will be accessible on <http://localhost:3001>.
 
