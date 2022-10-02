@@ -75,73 +75,49 @@ Once you navigate to the full blog post, you will see any comments that have bee
 
 ## Automated Functional Testing
 
-HippoTech 2.0 comes with a suite of end-to-end tests using the **[Cypress](https://cypress.io)** testing framework. The tests can be run headless (ideal for CI/CD pipelines) or interactively. 
+HippoTech 2.0 comes with a suite of end-to-end tests using the **[Cypress](https://cypress.io)** testing framework. The tests can be run headless (without the UI) or interactively (a browser will pop up and you'll see the automated tests running live). 
 
-The simplest way to run the tests is with Docker Compose: that way you don't have to install any dependencies.
+You can either run Cypress locally (and you'll need to do this if you want the interactive test runs) or with Docker Compose, if you don't want to mess around with Cypress and its dependencies. Cypress is a great tool, so if you have the time: try both!
 
-### Headless
+### Running Cypress Locally
 
-```
-cd hippotech-react
-npx cypress run
-```
+#### Dependencies
 
-### Interactive
+You will need Node.js v16 or later to install and run Cypress. Cypress does have some dependencies outside of the Node ecosystem that may be missing from your environment. Just give it a go, and if it turns out that you can't run Cypress out of the box, check out the Cypress docs here: <https://docs.cypress.io/guides/getting-started/installing-cypress> for guidance on what to install.
 
-```
-cd hippotech-react
-npx cypress open
-```
-
-### Cypress Dependencies
-
-You may not need anything extra to run the end-to-end tests, but Cypress does have some dependencies. If it turns out your system can't run Cypress out of the box, check out the Cypress docs here: <https://docs.cypress.io/guides/getting-started/installing-cypress> for guidance on what to install.
-
-On Ubuntu this should do the trick:
+On Ubuntu, for example, this should do the trick:
 
 `apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb`
 
-## HippoTech Microservices
+#### Installing Cypress
 
-So far we have been building and running a single, monolithic Java application. You can also build and run the microservices version of HippoTech which will include several back end services:
-
-* Approval (Java)
-* Blog (Node.js)
-
-There is no need to build and run these services locally: this will all be taken care of by Docker Compose or Kubernetes (coming soon).
-
-### Docker Compose
-
-If you take a look in the default `docker-compose.yml` file you will see a number of containers:
-
-* hippotech - the front end (basically just a repackaging of the Java API and React UI)
-* approval  - a back-end service written in Java to handle mortgage approval requests
-* blog      - the back-end blog subscription service written in Node.js
-* mongo     - the NoSQL database used by the blog service
-
-You can build and run the microservices version of HippoTech with Docker Compose by running:
+You will only need to do this once:
 
 ```
-docker-compose build --no-cache
-docker-compose up
+cd test
+npm install
 ```
 
-Once running you can either interact with HippoTech through its exposed port (3001 as always), or you can run the automated test suite. You can either do this by running the test suite locally as described above, or by pulling in an additional Docker Compose configuration file to run the tests headless:
+#### Running the Interactive Tests
 
-`docker-compose -f docker-compose.yml -f docker-compose-tests.yml up`
+```
+cd test                     # if you haven't already
+npx cypress open            # now you can view and run the test suites interactively in your browser
+```
 
-### Docker (work in progress, ignore for now)
+#### Running the Headless Tests
 
-You can build the HippoTech docker container image with the following command:
+```
+cd test                     # if you haven't already
+npx cypress run            # this will run all the tests without UI 
+```
 
-`docker build -t hippotech:latest .`
+### Running Cypress in Docker Compose
 
-Or use whatever tag you prefer, of course. And then run it locally with:
+First you will need to start the HippoTech application with `docker-compose up` as normal. Give the system a little bit of time to make sure that all the services have started. Now, in another terminal window, you can run the tests:
 
-`docker run --rm hippotech:latest -p 3001:3001`
+`docker-compose -f docker-compose-run-tests.yml up`
 
-One of the advantages of this approach is that you don't need any of the build tools, since that takes place inside Docker images. One you're up and running you can still run tests, but in that case you'll still need to have Node, and run `npm install` inside `hippotech-react`. Alterntatively, you can run the docker image *and* immediately run the Cypress tests inside that same image with the following command:
+This will run all the test suites in headless mode. Technically it is possible to do this headed (with UI) with Docker Compose, but you'll need to do some X window forwarding magic so, frankly, you're probably better off just installing Node.js if you haven't already and running the tests locally.
 
-`docker run --rm -p 3001:3001 hippotech:latest bash -c "./start.sh && cd /hippotech-react && . /usr/local/nvm/nvm.sh && npx cypress run"`
-
-In this case the container will exit as soon as the tests complete.
+In 

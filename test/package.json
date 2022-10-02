@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "cypress": "^10.0.0",
+    "cypress": "10.9.0",
     "eslint-plugin-cypress": "^2.12.1"
   },
   "scripts": {
-    "test": "cypress run",
+    "test": "cypress run" 
   },
   "browserslist": {
     "production": [
