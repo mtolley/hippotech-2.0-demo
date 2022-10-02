@@ -24,7 +24,7 @@ Make sure it's up and running on <http://localhost:3001>.
 
 ## Up And Running: The Microservices Version
 
-You can easily run a distributed, microservices version of the same application with Docker Compose. The functionality is identical, but there are more communicating microservices behind the scenes communicating over HTTP and Kafka queues. You will need to:
+You can easily run a distributed, microservices version of the same application with Docker Compose. The functionality is identical, but there are multiple "microservices" behind the scenes communicating over HTTP and Kafka queues. You will need to:
 
 1. Clone this repository.
 2. Launch the microservices version of the application with Docker Compose

@@ -4,8 +4,8 @@ services:
     hippotech:
         container_name: hippotech
         image: mtolley/hippotech-java-api:latest
-        # ports:
-        #     - 3001:3001
+        ports:
+            - 3001:3001
         hostname: hippotech
 
         # environment: 
