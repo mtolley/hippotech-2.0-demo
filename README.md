@@ -116,8 +116,6 @@ npx cypress run            # this will run all the tests without UI
 
 First you will need to start the HippoTech application with `docker-compose up` as normal. Give the system a little bit of time to make sure that all the services have started. Now, in another terminal window, you can run the tests:
 
-`docker-compose -f docker-compose-run-tests.yml up`
+`docker-compose -f docker-compose.yml -f docker-compose-run-tests.yml up`
 
 This will run all the test suites in headless mode. Technically it is possible to do this headed (with UI) with Docker Compose, but you'll need to do some X window forwarding magic so, frankly, you're probably better off just installing Node.js if you haven't already and running the tests locally.
-
-In 
