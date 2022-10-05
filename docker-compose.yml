@@ -7,7 +7,8 @@ services:
         ports:
             - 3001:3001
         hostname: hippotech
-
+        env_file: .env
+        
         # environment: 
         #     APPROVAL_URL: "http://approval:4002"
         #     BLOG_URL: "http://blog:4003"
