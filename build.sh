@@ -7,3 +7,7 @@ cp ../hippotech-2.0/hippotech-react/cypress/e2e/* test/cypress/e2e
 cp -R ../hippotech-2.0/hippotech-react/cypress/fixtures test/cypress/fixtures
 cp -R ../hippotech-2.0/hippotech-react/cypress/plugins test/cypress/plugins
 cp -R ../hippotech-2.0/hippotech-react/cypress/support test/cypress/support
+
+cd java-api
+docker build -t mtolley/hippotech-java-api:2.0.0 -t mtolley/hippotech-java-api:latest .
+cd ..
