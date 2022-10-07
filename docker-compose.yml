@@ -9,19 +9,18 @@ services:
         hostname: hippotech
         env_file: .env
         
-        # environment: 
-        #     APPROVAL_URL: "http://approval:4002"
+        environment: 
+            APPROVAL_URL: "http://approval:4002"
         #     BLOG_URL: "http://blog:4003"
 
-    # approval:
-    #     container_name: approval
-    #     hostname: approval
-    #     build:
-    #         context: ./approval
-    #     environment: 
-    #         FRAUD_URI: "fraud:4004"
-    #         KAFKA_URI: "kafka:9092"
-    #         KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+    approval:
+        container_name: approval
+        hostname: approval
+        image: mtolley/hippotech-approval:latest
+        # environment: 
+        #     FRAUD_URI: "fraud:4004"
+            # KAFKA_URI: "kafka:9092"
+            # KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
 
     # credit:
     #     container_name: credit
