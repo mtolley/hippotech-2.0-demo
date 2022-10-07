@@ -15,5 +15,5 @@ then
     JAVA_OPTS="-javaagent:/tmp/seeker/seeker-agent.jar ${JAVA_OPTS}"
 fi
  
-# Run Webgoat
+# Run the application
 java ${JAVA_OPTS} -jar api.jar
