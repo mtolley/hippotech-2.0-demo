@@ -6,6 +6,7 @@ JAVA_OPTS="-Xmx512m"
 # Deploy the Seeker Java Agent
 if [ ! -z "${SEEKER_SERVER_URL}" ];
 then
+    export SEEKER_PROJECT_KEY=${SEEKER_COMPOSITE_PROJECT_KEY}-API
     # Download the Agent package
     curl -k -o /tmp/seeker-agent.zip "${SEEKER_SERVER_URL}/rest/api/latest/installers/agents/binaries/JAVA"
     # Unzip the Agent package
