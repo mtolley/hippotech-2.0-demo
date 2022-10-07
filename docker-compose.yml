@@ -17,7 +17,8 @@ services:
         container_name: approval
         hostname: approval
         image: mtolley/hippotech-approval:latest
-        # environment: 
+        environment: 
+            JDBC_CONNECTION_STRING: jdbc:h2:mem:demodb
         #     FRAUD_URI: "fraud:4004"
             # KAFKA_URI: "kafka:9092"
             # KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
