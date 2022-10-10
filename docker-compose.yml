@@ -8,7 +8,6 @@ services:
             - 3001:3001
         hostname: hippotech
         env_file: .env
-        
         environment: 
             APPROVAL_URL: "http://approval:4002"
             BLOG_URL: "http://blog:4003"
@@ -18,10 +17,9 @@ services:
         hostname: approval
         env_file: .env
         image: mtolley/hippotech-approval:latest
-        
         environment: 
             JDBC_CONNECTION_STRING: jdbc:h2:mem:demodb
-#           FRAUD_URI: "fraud:4004"
+            FRAUD_URI: "fraud:4004"
             KAFKA_URI: "kafka:9092"
             KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
 
@@ -29,6 +27,7 @@ services:
         container_name: credit
         hostname: credit
         image: mtolley/hippotech-credit:latest
+        env_file: .env
         environment:
           JDBC_CONNECTION_STRING jdbc:h2:mem:demodb
 
@@ -38,12 +37,13 @@ services:
         hostname: mongo
         restart: always
 
-    # fraud:
-    #     container_name: fraud
-    #     hostname: fraud
-    #     build:
-    #         context: ./fraud
-
+    fraud:
+        container_name: fraud
+        hostname: fraud
+        build:
+            context: ./fraud
+        env_file: .env
+        
     blog:
         container_name: blog
         hostname: blog
