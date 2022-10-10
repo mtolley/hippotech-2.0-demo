@@ -28,7 +28,9 @@ services:
     credit:
         container_name: credit
         hostname: credit
-        image: mtolley/hippotech-credit:latest   
+        image: mtolley/hippotech-credit:latest
+        environment:
+          JDBC_CONNECTION_STRING jdbc:h2:mem:demodb
 
     mongo:
         image: mongo
