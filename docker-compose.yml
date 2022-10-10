@@ -46,8 +46,7 @@ services:
     blog:
         container_name: blog
         hostname: blog
-        build:
-            context: ./blog
+        image: mtolley/hippotech-blog:latest
         ports:
             - 4003:4003
         environment: 
