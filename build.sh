@@ -6,6 +6,7 @@ cp ../hippotech-2.0/screenshot.png screenshot.png
 cp ../hippotech-2.0/java-api/target/api.jar java-api
 cp ../hippotech-2.0/approval/target/approval.jar approval
 cp ../hippotech-2.0/credit/target/credit.jar credit
+cp ../hippotech-2.0/fraud/target/fraud.jar fraud
 cp ../hippotech-2.0/blog/blog.js blog
 cp ../hippotech-2.0/blog/package.json blog
 cp ../hippotech-2.0/blog/package-lock.json blog
@@ -29,4 +30,8 @@ cd ..
 
 cd credit
 docker build -t mtolley/hippotech-credit:$VERSION -t mtolley/hippotech-credit:latest .
+cd ..
+
+cd fraud
+docker build -t mtolley/hippotech-fraud:$VERSION -t mtolley/hippotech-fraud:latest .
 cd ..
