@@ -25,11 +25,11 @@ services:
             KAFKA_URI: "kafka:9092"
             KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
 
-    # credit:
-    #     container_name: credit
-    #     hostname: credit
-    #     build:
-    #         context: ./credit        
+    credit:
+        container_name: credit
+        hostname: credit
+        build:
+            context: ./credit        
 
     mongo:
         image: mongo
