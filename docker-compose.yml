@@ -11,7 +11,7 @@ services:
         
         environment: 
             APPROVAL_URL: "http://approval:4002"
-        #     BLOG_URL: "http://blog:4003"
+            BLOG_URL: "http://blog:4003"
 
     approval:
         container_name: approval
@@ -31,11 +31,11 @@ services:
     #     build:
     #         context: ./credit        
 
-    # mongo:
-    #     image: mongo
-    #     container_name: mongo
-    #     hostname: mongo
-    #     restart: always
+    mongo:
+        image: mongo
+        container_name: mongo
+        hostname: mongo
+        restart: always
 
     # fraud:
     #     container_name: fraud
@@ -43,17 +43,17 @@ services:
     #     build:
     #         context: ./fraud
 
-    # blog:
-    #     container_name: blog
-    #     hostname: blog
-    #     build:
-    #         context: ./blog
-    #     ports:
-    #         - 4003:4003
-    #     environment: 
-    #         MONGO_URL: "mongodb://mongo:27017"
-    #     depends_on: 
-    #         - mongo
+    blog:
+        container_name: blog
+        hostname: blog
+        build:
+            context: ./blog
+        ports:
+            - 4003:4003
+        environment: 
+            MONGO_URL: "mongodb://mongo:27017"
+        depends_on: 
+            - mongo
 
     zookeeper:
         image: confluentinc/cp-zookeeper:5.4.4
