@@ -29,7 +29,7 @@ services:
         image: mtolley/hippotech-credit:latest
         env_file: .env
         environment:
-          JDBC_CONNECTION_STRING jdbc:h2:mem:demodb
+            JDBC_CONNECTION_STRING=jdbc:h2:mem:demodb
 
     mongo:
         image: mongo
@@ -43,7 +43,7 @@ services:
         build:
             context: ./fraud
         env_file: .env
-        
+
     blog:
         container_name: blog
         hostname: blog
