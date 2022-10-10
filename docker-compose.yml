@@ -16,10 +16,12 @@ services:
     approval:
         container_name: approval
         hostname: approval
+        env_file: .env
         image: mtolley/hippotech-approval:latest
+        
         environment: 
             JDBC_CONNECTION_STRING: jdbc:h2:mem:demodb
-        #     FRAUD_URI: "fraud:4004"
+#           FRAUD_URI: "fraud:4004"
             KAFKA_URI: "kafka:9092"
             KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
 
