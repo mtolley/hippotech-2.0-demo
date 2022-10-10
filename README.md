@@ -1,4 +1,4 @@
-# HippoTech 2.0 - An Intentionally Vulnerable SPA
+# HippoTech 2.0 - Intentionally Vulnerable App & API
 
 HippoTech is a fake, online mortgage service full of the worst kinds of security vulnerabilities you can imagine...and then some! It is designed for application security training and you should run it carefully, in private, and **never expose it on the network or internet** because it is dangerously vulnerable.
 
