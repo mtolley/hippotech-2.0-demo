@@ -40,8 +40,7 @@ services:
     fraud:
         container_name: fraud
         hostname: fraud
-        build:
-            context: ./fraud
+        image: mtolley/hippotech-fraud:latest
         env_file: .env
 
     blog:
