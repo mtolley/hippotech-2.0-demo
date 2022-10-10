@@ -28,8 +28,7 @@ services:
     credit:
         container_name: credit
         hostname: credit
-        build:
-            context: ./credit        
+        image: mtolley/hippotech-credit:latest   
 
     mongo:
         image: mongo
