@@ -49,6 +49,7 @@ services:
         image: mtolley/hippotech-blog:latest
         ports:
             - 4003:4003
+        env_file: .env
         environment: 
             MONGO_URL: "mongodb://mongo:27017"
         depends_on: 
