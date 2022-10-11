@@ -3,4 +3,5 @@ COPY package.json package.json
 COPY package-lock.json package-lock.json
 COPY blog.js blog.js
 RUN npm ci
-CMD ["npm", "start"]
+COPY run.sh run.sh
+CMD ["/bin/sh", "run.sh"]
