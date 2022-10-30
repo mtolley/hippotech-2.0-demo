@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=2.0.0
+VERSION=$(cat VERSION)
 
 cp ../hippotech-2.0/screenshot.png screenshot.png
 cp ../hippotech-2.0/java-api/target/api.jar java-api
@@ -35,3 +35,4 @@ cd ..
 cd fraud
 docker build -t mtolley/hippotech-fraud:$VERSION -t mtolley/hippotech-fraud:latest .
 cd ..
+
