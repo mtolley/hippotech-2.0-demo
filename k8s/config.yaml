@@ -3,6 +3,6 @@ kind: ConfigMap
 metadata:
   name: hippotech-config
 data:
-  notinuse: 123
+  notinuse: "123"
   #SEEKER_SERVER_URL: <your server>
   #SEEKER_COMPOSITE_PROJECT_KEY: <your key> 
