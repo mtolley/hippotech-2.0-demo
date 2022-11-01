@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: approval
+spec:
+  selector:
+    matchLabels:
+      app: approval
+  replicas: 1 
+  template:
+    metadata:
+      labels:
+        app: approval
+    spec:
+      containers:
+        - name: approval
+          image: mtolley/hippotech-approval:latest
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: hippotech-config
+          ports:
+            - containerPort: 4002
+          # livenessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: 3001
+          #   initialDelaySeconds: 3
+          #   periodSeconds: 3
+          env:
+            - name: FRAUD_URI
+              value: "fraud:4004"
+            - name: KAFKA_URI
+              value: "kafka:9092"
+            - name: KAFKA_BOOTSTRAP_SERVERS
+              value: "kafka:9092"
+            - name: JDBC_CONNECTION_STRING
+              value: jdbc:h2:mem:demodb
+
+---
+
+apiVersion: v1 
+kind: Service 
+metadata: 
+  name: approval
+spec:
+  selector:
+    app: approval
+  ports:
+    - protocol: "TCP"
+      port: 4002 
+      targetPort: 4002
+  type: ClusterIP 

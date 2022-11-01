@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blog
+spec:
+  selector:
+    matchLabels:
+      app: blog
+  replicas: 1 
+  template:
+    metadata:
+      labels:
+        app: blog
+    spec:
+      containers:
+        - name: blog
+          image: mtolley/hippotech-blog:latest
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: hippotech-config
+          ports:
+            - containerPort: 4003
+          env:  
+            - name: MONGO_URL
+              value: "mongodb://mongo:27017"
+
+---
+
+apiVersion: v1 
+kind: Service 
+metadata: 
+  name: blog
+spec:
+  selector:
+    app: blog
+  ports:
+    - protocol: "TCP"
+      port: 4003
+      targetPort: 4003
+  type: ClusterIP
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo
+spec:
+  selector:
+    matchLabels:
+      app: mongo
+  replicas: 1 
+  template:
+    metadata:
+      labels:
+        app: mongo
+    spec:
+      containers:
+        - name: mongo
+          image: mongo
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 27017
+
+---
+
+apiVersion: v1 
+kind: Service 
+metadata: 
+  name: mongo
+spec:
+  selector:
+    app: mongo
+  ports:
+    - protocol: "TCP"
+      port: 27017
+      targetPort: 27017
+  type: ClusterIP
+  
