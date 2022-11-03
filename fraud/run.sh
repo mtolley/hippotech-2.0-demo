@@ -4,7 +4,7 @@
 JAVA_OPTS="-Xmx512m"
  
 # Deploy the Seeker Java Agent
-if [ ! -z "${SEEKER_SERVER_URL}" ];
+if [ ! -z "${ACTIVATE_SEEKER}" ];
 then
     export SEEKER_PROJECT_KEY=${SEEKER_COMPOSITE_PROJECT_KEY}-FRAUD
     # Download the Agent package
