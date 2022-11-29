@@ -24,6 +24,8 @@ Make sure it's up and running on <http://localhost:3001>.
 
 ## Up And Running: The Microservices Version
 
+### Docker Compose
+
 You can easily run a distributed, microservices version of the same application with Docker Compose. The functionality is identical, but there are multiple "microservices" behind the scenes communicating over HTTP and Kafka queues. You will need to:
 
 1. Clone this repository.
@@ -36,6 +38,51 @@ docker-compose up
 ```
 
 Just like the monolithic version, the front end will be accessible on <http://localhost:3001>.
+
+### Kubernetes
+
+You will find all the necessary Kubernetes resources as YAML files under `./k8s`. You will need a working Kubernetes cluster and be able to run `kubectl` commands to follow these instructions. They have been tested on the local Kubernetes environment that comes with Docker Desktop, but should be portable to any Kubernetes implementation.
+
+In this example we create and us a Kubernetes namespace called "hippo123" - just replace this with the namepsace you choose to use.
+
+```
+cd k8s
+kubectl create namespace hippo123
+kubectl -n hippo123 apply -f .
+```
+
+That will deploy all the resources in the `k8s` directory to your Kubernetes cluster in the specified namespace you can check that the pods are up and running with `kubectl get pods -n hippo123`:
+
+```
+% kubectl get pods -n hippo123
+NAME                         READY   STATUS    RESTARTS   AGE
+approval-854bdffbf6-9mklk    1/1     Running   0          8s
+blog-646c77f5c-cgn5w         1/1     Running   0          8s
+credit-546c8864fd-fw7rr      1/1     Running   0          8s
+fraud-59759b55d9-4fm2p       1/1     Running   0          8s
+java-api-6db8d59f48-r79fd    1/1     Running   0          8s
+kafka-5dcfc99d7f-5fllt       1/1     Running   0          8s
+mongo-757874cc59-g8hrq       1/1     Running   0          8s
+zookeeper-56799b45d5-q7sws   1/1     Running   0          7s
+```
+
+This is running exactly the same set of services as above in Docker Compose: the only difference is that they are deployed in a Kubernetes cluster. However, at this point there is no way to access the HippoTech application that is running on the cluster. To do this quickly you can set up port forwarding with the following command:
+
+```
+kubectl -n hippo123 port-forward services/java-api-svc 3001
+```
+
+Now you should be able to point your browser at `http://localhost:3001` and see the HippoTech UI as normal.
+
+#### Uninstalling from the Kubernetes cluster
+
+When you're ready to remove your deployment of HippoTech you can run:
+
+```
+kubectl delete -f . -n hippo123
+```
+
+and all of the deployed resouces will be removed from the specified namespace.
 
 ## Logging In
 
