@@ -105,7 +105,6 @@ Click on the burger icon on the top left and you will see My Mortgages. If you n
 
 ### The Blog
 
-
 Click on the burger icon on the top left and you will see a link to the Blog. 
 
 #### Subscription
@@ -119,6 +118,10 @@ There are three blog posts, of which you can see a summary on the Blog home page
 #### Comments
 
 Once you navigate to the full blog post, you will see any comments that have been left on that post by HippoTech's highly-engaged customer community. If you're logged in, you will also have the opportunity to leave your own comments. But please keep them respectful!
+
+### Fraud checks
+
+HippoTech's Fraud department keep a close eye on incoming requests. Fraud Agents use http://localhost:4004/fraudreporting to view recent suspicious requests from the general public. This is pretty much read-only for the moment: you can't actually do anything here other than view the flagged requests, which is all of them.
 
 ## Automated Functional Testing
 
