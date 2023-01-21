@@ -21,6 +21,7 @@ spec:
                 name: hippotech-config
           ports:
             - containerPort: 4004
+            - containerPort: 4005
 
 ---
 
@@ -35,4 +36,7 @@ spec:
     - protocol: "TCP"
       port: 4004
       targetPort: 4004
+    - protocol: "TCP"
+      port: 4005
+      targetPort: 4005
   type: ClusterIP 
