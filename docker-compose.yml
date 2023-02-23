@@ -3,20 +3,20 @@ version: "3"
 services:
     hippotech:
         container_name: hippotech
-        image: mtolley/hippotech-java-api:2.0.5
+        image: mtolley/hippotech-java-api:2.0.6
         ports:
             - 3001:3001
         hostname: hippotech
         env_file: .env
         environment: 
             APPROVAL_URL: "http://approval:4002"
-            BLOG_URL: "http://blog:4003"
+            # BLOG_URL: "http://blog:4003"
 
     approval:
         container_name: approval
         hostname: approval
         env_file: .env
-        image: mtolley/hippotech-approval:2.0.5
+        image: mtolley/hippotech-approval:2.0.6
         environment: 
             JDBC_CONNECTION_STRING: jdbc:h2:mem:demodb
             FRAUD_URI: "fraud:4005"
@@ -26,7 +26,7 @@ services:
     credit:
         container_name: credit
         hostname: credit
-        image: mtolley/hippotech-credit:2.0.5
+        image: mtolley/hippotech-credit:2.0.6
         env_file: .env
         environment:
             JDBC_CONNECTION_STRING: jdbc:h2:mem:demodb
@@ -40,22 +40,22 @@ services:
     fraud:
         container_name: fraud
         hostname: fraud
-        image: mtolley/hippotech-fraud:2.0.5
+        image: mtolley/hippotech-fraud:2.0.6
         env_file: .env
         ports:
             - 4004:4004
 
-    blog:
-        container_name: blog
-        hostname: blog
-        image: mtolley/hippotech-blog:2.0.5
-        ports:
-            - 4003:4003
-        env_file: .env
-        environment: 
-            MONGO_URL: "mongodb://mongo:27017"
-        depends_on: 
-            - mongo
+    # blog:
+    #     container_name: blog
+    #     hostname: blog
+    #     image: mtolley/hippotech-blog:2.0.6
+    #     ports:
+    #         - 4003:4003
+    #     env_file: .env
+    #     environment: 
+    #         MONGO_URL: "mongodb://mongo:27017"
+    #     depends_on: 
+    #         - mongo
 
     zookeeper:
         image: confluentinc/cp-zookeeper:5.4.4
