@@ -1,0 +1,59 @@
+version: "3"
+
+services:
+    hippotech:
+        container_name: hippotech
+        image: mtolley/hippotech-java-api-arm:2.0.6
+        ports:
+            - 3001:3001
+        hostname: hippotech
+        env_file: .env
+        environment: 
+            APPROVAL_URL: "http://approval:4002"
+            # BLOG_URL: "http://blog:4003"
+
+    approval:
+        container_name: approval
+        hostname: approval
+        env_file: .env
+        image: mtolley/hippotech-approval-arm:2.0.6
+        environment: 
+            JDBC_CONNECTION_STRING: jdbc:h2:mem:demodb
+            FRAUD_URI: "fraud:4005"
+            # KAFKA_URI: "kafka:9092"
+            # KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+
+    # mongo:
+    #     image: mongo
+    #     container_name: mongo
+    #     hostname: mongo
+    #     restart: always
+
+    fraud:
+        container_name: fraud
+        hostname: fraud
+        image: mtolley/hippotech-fraud-arm:2.0.6
+        env_file: .env
+        ports:
+            - 4004:4004
+
+    # blog:
+    #     container_name: blog
+    #     hostname: blog
+    #     image: mtolley/hippotech-blog:2.0.6
+    #     ports:
+    #         - 4003:4003
+    #     env_file: .env
+    #     environment: 
+    #         MONGO_URL: "mongodb://mongo:27017"
+    #     depends_on: 
+    #         - mongo
+
+    hippodb:
+        container_name: hippodb
+        hostname: hippodb
+        image: postgres:14
+        environment:
+            "POSTGRES_USER": 'hippotech'
+            "POSTGRES_PASSWORD": 'hippotech'
+            "POSTGRES_DB": 'hippotech'
