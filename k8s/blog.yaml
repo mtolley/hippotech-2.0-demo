@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: blog
-          image: mtolley/hippotech-blog:latest
+          image: mtolley/hippotech-blog:2.0.6
           imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:

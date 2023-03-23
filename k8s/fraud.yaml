@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: fraud
-          image: mtolley/hippotech-fraud:latest
+          image: mtolley/hippotech-fraud:2.0.6
           imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: java-api
-          image: mtolley/hippotech-java-api:latest
+          image: mtolley/hippotech-java-api:2.0.6
           imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:

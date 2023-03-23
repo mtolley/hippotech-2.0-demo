@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: approval
-          image: mtolley/hippotech-approval:latest
+          image: mtolley/hippotech-approval:2.0.6
           imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:

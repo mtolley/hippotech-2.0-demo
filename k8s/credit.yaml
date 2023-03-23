@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: credit
-          image: mtolley/hippotech-credit:latest
+          image: mtolley/hippotech-credit:2.0.6
           imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:
