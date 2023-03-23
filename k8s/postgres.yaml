@@ -1,0 +1,41 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: hippodb
+  labels:
+    app: hippodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hippodb
+  template:
+    metadata:
+      labels:
+        app: hippodb
+    spec:
+      containers:
+      - name: hippodb
+        image: postgres:14
+        ports:
+        - containerPort: 5432
+        env:
+        - name: POSTGRES_USER
+          value: 'hippotech'
+        - name: POSTGRES_PASSWORD
+          value: 'hippotech'
+        - name: POSTGRES_DB
+          value: 'hippotech'
+        
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hippodb
+spec:
+  selector:
+    app: hippodb
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432

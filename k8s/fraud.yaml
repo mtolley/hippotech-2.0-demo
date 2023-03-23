@@ -34,9 +34,11 @@ spec:
     app: fraud
   ports:
     - protocol: "TCP"
+      name: port4004
       port: 4004
       targetPort: 4004
     - protocol: "TCP"
+      name: port4005
       port: 4005
       targetPort: 4005
-  type: ClusterIP 
+  type: NodePort

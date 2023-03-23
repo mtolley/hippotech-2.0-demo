@@ -19,12 +19,6 @@ spec:
           envFrom:
             - configMapRef:
                 name: hippotech-config
-          # livenessProbe:
-          #   httpGet:
-          #     path: /
-          #     port: 3001
-          #   initialDelaySeconds: 3
-          #   periodSeconds: 3
           ports:
             - containerPort: 3001
           env:
