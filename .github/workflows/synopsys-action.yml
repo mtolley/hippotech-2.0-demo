@@ -16,8 +16,9 @@ jobs:
     - name: npmsetup
       # You may pin to the exact commit or the version.
       # uses: ng-easy/npm-setup@e5cc43439b1b38d58809e979c44bc442e2a89ac5
-    - uses: ng-easy/npm-setup@v1.7.2 
-    - run: npm run build
+      uses: ng-easy/npm-setup@v1.7.2 
+      with:
+        run: npm run build
     - name: Setup Java JDK
       uses: actions/setup-java@v4
       with:
