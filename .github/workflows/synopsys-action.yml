@@ -13,7 +13,7 @@ jobs:
     steps:
     - name: Checkout Source
       uses: actions/checkout@v4
-    - name: npmsetup
+      # - name: npmsetup
       # You may pin to the exact commit or the version.
       # uses: ng-easy/npm-setup@e5cc43439b1b38d58809e979c44bc442e2a89ac5
       # uses: ng-easy/npm-setup@v1.7.2 
