@@ -13,7 +13,7 @@ jobs:
     steps:
     - name: Checkout Source
       uses: actions/checkout@v4
-    - name: Setup Node.js environment
+    - name: Setup Node.js environment 1
       uses: actions/setup-node@v4.0.2
       with:
        # Set always-auth in npmrc.
