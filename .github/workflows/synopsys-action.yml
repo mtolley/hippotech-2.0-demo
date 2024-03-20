@@ -28,7 +28,7 @@ jobs:
       uses: synopsys-sig/synopsys-action@v1.8.0
       with:
         polaris_server_url: ${{ vars.POLARIS_SERVERURL }}
-        polaris_access_token: ${{ secrets.POLARIS_ACCESSTOKEN }}
+        polaris_access_token: ${{ secrets.POLARIS_ACCESS_TOKEN }}
         polaris_assessment_types: 'SAST,SCA'
         polaris_application_name: JWtest-${{ github.event.repository.name }}
         polaris_project_name: ${{ github.event.repository.name }}
