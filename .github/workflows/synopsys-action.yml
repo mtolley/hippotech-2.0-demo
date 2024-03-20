@@ -36,6 +36,7 @@ jobs:
         # polaris_project_name: "HelloJava"
         # polaris_branch_name: main
         polaris_branch_parent_name: main
+        polaris_branch_name: jwaizguy_patch-4
         polaris_prComment_enabled: ${{ github.event_name == 'pull_request' && 'true' || 'false' }}
         polaris_reports_sarif_create: ${{ github.event_name != 'pull_request' && 'true' || 'false' }}
         polaris_upload_sarif_report: ${{ github.event_name != 'pull_request' && 'true' || 'false' }}
