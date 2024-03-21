@@ -22,9 +22,9 @@ jobs:
        node-version: =10.15.0    
     # Used to specify the path to a dependency file: package-lock.json, yarn.lock, etc. Supports wildcards or a list of file names for caching multiple dependencies.
        cache-dependency-path: ./test  ./blog 
-    # - name: pkg install
-       run: cd ./test 
-            npm install 
+    - name: pkg install
+      run: cd ./test 
+           npm install 
     - name: Setup Java JDK
       uses: actions/setup-java@v4
       with:
