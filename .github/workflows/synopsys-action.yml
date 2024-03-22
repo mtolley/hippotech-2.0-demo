@@ -16,6 +16,7 @@ jobs:
     - name: Setup Node.js environment 1
       uses: actions/setup-node@v4.0.2
       with:
+       # Set always-auth in npmrc.
        always-auth: false
        # Version Spec of the version to use. Examples: 12.x, 10.15.1, >=10.15.0.
        node-version: =10.15.0    
@@ -23,7 +24,7 @@ jobs:
        cache-dependency-path: ./test  ./blog 
     - name: pkg install
       run: cd test ; npm install 
-    - name: Setup Java JDK 17
+    - name: Setup Java JDK
       uses: actions/setup-java@v4
       with:
         java-version: 17
