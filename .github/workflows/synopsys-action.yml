@@ -39,6 +39,9 @@ jobs:
         polaris_prComment_enabled: ${{ github.event_name == 'pull_request' && 'true' || 'false' }}
         polaris_reports_sarif_create: ${{ github.event_name != 'pull_request' && 'true' || 'false' }}
         polaris_upload_sarif_report: ${{ github.event_name != 'pull_request' && 'true' || 'false' }}
+        polaris_reports_sarif_severities: "CRITICAL,HIGH,MEDIUM"
+        polaris_reports_sarif_groupSCAIssues: true 
+        polaris_reports_sarif_issue_types: 'SCA, SAST' 
         github_token: ${{ secrets.GITHUB_TOKEN }}
 #    - name: Save Logs
 #      if: always()
