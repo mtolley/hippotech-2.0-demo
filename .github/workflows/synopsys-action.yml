@@ -1,0 +1,57 @@
+# example workflow for Polaris scans using the Synopsys Action
+# https://github.com/marketplace/actions/synopsys-action
+name: polaris
+on:
+  push:
+    branches: [ main, master, develop, stage, release ]
+  pull_request:
+    branches: [ main, master, develop, stage, release ]
+  workflow_dispatch:
+jobs:
+  polaris:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Source
+      uses: actions/checkout@v4
+    - name: Setup Node.js environment 1
+      uses: actions/setup-node@v4.0.2
+      with:
+       # Set always-auth in npmrc.
+       always-auth: false
+       # Version Spec of the version to use. Examples: 12.x, 10.15.1, >=10.15.0.
+       node-version: =10.15.0    
+    # Used to specify the path to a dependency file: package-lock.json, yarn.lock, etc. Supports wildcards or a list of file names for caching multiple dependencies.
+       cache-dependency-path: ./test  ./blog 
+    - name: pkg install
+      run: cd test ; npm install 
+    - name: Setup Java JDK
+      uses: actions/setup-java@v4
+      with:
+        java-version: 17
+        distribution: microsoft 
+    - name: Polaris Scan 2
+      uses: synopsys-sig/synopsys-action@v1.8.0
+      with:
+        polaris_server_url: ${{ vars.POLARIS_SERVERURL }}
+        polaris_access_token: ${{ secrets.POLARIS_ACCESS_TOKEN }}
+        polaris_assessment_types: 'SAST,SCA'
+        # polaris_application_name: JWtest-${{ github.event.repository.name }}
+        polaris_application_name: JWtest
+        polaris_project_name: ${{ github.event.repository.name }}
+        # polaris_project_name: "HelloJava"
+        # polaris_branch_name: main
+        polaris_branch_parent_name: main
+        polaris_branch_name: jwaizguy_patch-7
+        polaris_prComment_enabled: ${{ github.event_name == 'pull_request' && 'true' || 'false' }}
+        polaris_reports_sarif_create: ${{ github.event_name != 'pull_request' && 'true' || 'false' }}
+        polaris_upload_sarif_report: ${{ github.event_name != 'pull_request' && 'true' || 'false' }}
+        # polaris_reports_sarif_severities: "CRITICAL,HIGH,MEDIUM"
+        polaris_reports_sarif_groupSCAIssues: true 
+        polaris_reports_sarif_issue_types: 'SCA, SAST' 
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+#    - name: Save Logs
+#      if: always()
+#      uses: actions/upload-artifact@v4
+#      with:
+#        name: bridge-logs
+#        path: ${{ github.workspace }}/.bridge

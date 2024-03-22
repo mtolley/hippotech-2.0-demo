@@ -6,3 +6,4 @@ COPY blog.js blog.js
 RUN npm ci
 COPY run.sh run.sh
 CMD ["/bin/sh", "run.sh"]
+
