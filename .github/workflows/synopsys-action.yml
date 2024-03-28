@@ -13,7 +13,7 @@ jobs:
     steps:
     - name: Checkout Source
       uses: actions/checkout@v4
-    - name: Setup Node.js environment 1
+    - name: Setup Node.js environment
       uses: actions/setup-node@v4.0.2
       with:
        # Set always-auth in npmrc.
@@ -23,7 +23,7 @@ jobs:
     # Used to specify the path to a dependency file: package-lock.json, yarn.lock, etc. Supports wildcards or a list of file names for caching multiple dependencies.
        cache-dependency-path: ./test  ./blog 
     - name: pkg install
-      run: cd test ; npm install 
+      run: cd test ; npm install
     - name: Setup Java JDK
       uses: actions/setup-java@v4
       with:
@@ -37,7 +37,7 @@ jobs:
         polaris_assessment_types: 'SAST,SCA'
         polaris_application_name: JWtest
         polaris_project_name: ${{ github.event.repository.name }}
-        polaris_branch_name: jwaizguy-patch-3
+        #polaris_branch_name: jwaizguy-patch-3
         polaris_branch_parent_name: main
         polaris_prComment_enabled: ${{ github.event_name == 'pull_request' && 'true' || 'false' }}
         polaris_reports_sarif_create: ${{ github.event_name != 'pull_request' && 'true' || 'false' }}
