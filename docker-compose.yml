@@ -82,6 +82,9 @@ services:
     hippodb:
         container_name: hippodb
         hostname: hippodb
+        spec:
+        requiredDropCapabilities: 
+             - NET_RAW
         image: postgres:14
         environment:
             "POSTGRES_USER": 'hippotech'
