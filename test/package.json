@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "cypress": "10.9.0",
+    "cypress": "11.9.0",
     "eslint-plugin-cypress": "^2.12.1"
   },
   "scripts": {

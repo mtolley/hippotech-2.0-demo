@@ -1,0 +1,39 @@
+# example workflow for Polaris scans using the Synopsys Action
+# https://github.com/marketplace/actions/synopsys-action
+name: polaris-demo-1
+on:
+  push:
+    branches: [ main, master, develop, stage, release ]
+  pull_request:
+    branches: [ main, master, develop, stage, release ]
+  workflow_dispatch:
+jobs:
+  Secure-pipeline-with-polaris-Actions:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Source
+      uses: actions/checkout@v4
+    - name: Setup Java JDK
+      uses: actions/setup-java@v4
+      with:
+        java-version: 17
+        distribution: microsoft
+        #cache: maven
+    - name: Polaris Scan 2
+      uses: synopsys-sig/synopsys-action@v1.9.0
+      with:
+        polaris_server_url: ${{ vars.POLARIS_SERVERURL }}
+        polaris_access_token: ${{ secrets.POLARIS_ACCESS_TOKEN }}
+        polaris_assessment_types: 'SAST,SCA'
+        polaris_application_name: JWtest
+        polaris_project_name: ${{ github.event.repository.name }}
+        polaris_prComment_enabled: ${{ github.event_name == 'pull_request' && 'true' || 'false' }}
+        #polaris_reports_sarif_create: ${{ github.event_name != 'pull_request' && 'true' || 'false' }}
+        #polaris_upload_sarif_report: ${{ github.event_name != 'pull_request' && 'true' || 'false' }}
+        #github_token: ${{ secrets.GITHUB_TOKEN }}
+#    - name: Save Logs
+#      if: always()
+#      uses: actions/upload-artifact@v4
+#      with:
+#        name: bridge-logs
+#        path: ${{ github.workspace }}/.bridge
